@@ -15,7 +15,7 @@ import javax.swing.tree.TreeNode;
  * 该节点有一个子节点
  * 该节点有两个子节点:中序后继来代替该节点
  */
-public class BTree<T> {
+public class BTree<T extends Comparable<T>> {
     private BNode<T> root; //根节点
 
     public BTree() {

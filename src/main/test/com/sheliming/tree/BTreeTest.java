@@ -27,9 +27,18 @@ public class BTreeTest {
     }
 
     @Test
-    public void getNodeNumTest(){
+    public void getNodeNumTest() {
         BTree<Integer> bTree = createBTree();
         int nodeNum = bTree.getNodeNum();
-        Assert.assertEquals(8,nodeNum);
+        Assert.assertEquals(8, nodeNum);
     }
+
+    @Test
+    public void levelTraverseTest() {
+        BTree<Integer> bTree = createBTree();
+        String s = bTree.levelTraverse();
+        Assert.assertEquals("36,26,72,55,80,41,60,43", s);
+    }
+
+
 }

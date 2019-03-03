@@ -1,6 +1,8 @@
 package com.sheliming.tree;
 
 import javax.swing.tree.TreeNode;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 二叉（搜索）树
@@ -175,6 +177,36 @@ public class BTree<T extends Comparable<T>> {
             return 0;
         }
         return getNodeNum(node.leftChild) + getNodeNum(node.rightChild) + 1;
+    }
+
+    /**
+     * 分层遍历二叉树（按层次从上往下，从左往右）
+     * 相当于广度优先搜索，使用队列实现。队列初始化，将根节点压入队列。
+     * 当队列不为空，进行如下操作：弹出一个节点，访问，若左子节点或右子节点不为空，将其压入队列。
+     *
+     * @return
+     */
+    public String levelTraverse() {
+        if (root == null) {
+            return null;
+        }
+
+        StringBuilder res = new StringBuilder();
+
+        Queue<BNode> queue = new LinkedList<BNode>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            BNode node = queue.poll();
+            res.append(node.data + ",");
+            if (node.leftChild != null) {
+                queue.offer(node.leftChild);
+            }
+            if (node.rightChild != null) {
+                queue.offer(node.rightChild);
+            }
+        }
+        return res.substring(0, res.length() - 1);
     }
 
     /**

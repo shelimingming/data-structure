@@ -160,6 +160,24 @@ public class BTree<T extends Comparable<T>> {
     }
 
     /**
+     * 返回当前树的节点的个数
+     * （1）如果二叉树为空，节点个数为0
+     * （2）如果二叉树不为空，二叉树节点个数 = 左子树节点个数 + 右子树节点个数 + 1
+     *
+     * @return
+     */
+    public int getNodeNum() {
+        return getNodeNum(root);
+    }
+
+    private int getNodeNum(BNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return getNodeNum(node.leftChild) + getNodeNum(node.rightChild) + 1;
+    }
+
+    /**
      * 二叉树的节点类
      *
      * @param <T>
@@ -248,7 +266,7 @@ public class BTree<T extends Comparable<T>> {
      */
     public static void main(String[] args) {
 
-        BTree tree = new BTree();
+        BTree<Integer> tree = new BTree<Integer>();
         tree.insert(36);
         tree.insert(26);
         tree.insert(72);

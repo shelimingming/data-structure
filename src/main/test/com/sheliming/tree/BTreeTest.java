@@ -34,6 +34,13 @@ public class BTreeTest {
     }
 
     @Test
+    public void getLevelNodeNumTest() {
+        BTree<Integer> bTree = createBTree();
+        int nodeNum = bTree.getLevelNodeNum();
+        Assert.assertEquals(4, nodeNum);
+    }
+
+    @Test
     public void levelTraverseTest() {
         BTree<Integer> bTree = createBTree();
         String s = bTree.levelTraverse();

@@ -1,6 +1,5 @@
 package com.sheliming.tree;
 
-import javax.swing.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,6 +15,8 @@ import java.util.Queue;
  * 该节点是叶节点，没有子节点
  * 该节点有一个子节点
  * 该节点有两个子节点:中序后继来代替该节点
+ *
+ * https://blog.csdn.net/jisuanjiguoba/article/details/80471018
  */
 public class BTree<T extends Comparable<T>> {
     private BNode<T> root; //根节点
@@ -177,6 +178,28 @@ public class BTree<T extends Comparable<T>> {
             return 0;
         }
         return getNodeNum(node.leftChild) + getNodeNum(node.rightChild) + 1;
+    }
+
+    /**
+     * 返回当前树的叶子节点的个数
+     * （1）如果二叉树为空，叶子节点个数为0
+     * （2）如果节点的左右两个儿子都为空，则该节点为叶子结点
+     * （3）二叉树叶子节点个数 = 左子树叶子节点个数 + 右子树叶子节点个数
+     *
+     * @return
+     */
+    public int getLevelNodeNum() {
+        return getLevelNodeNum(root);
+    }
+
+    private int getLevelNodeNum(BNode node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.leftChild == null && node.rightChild == null) {
+            return 1;
+        }
+        return getLevelNodeNum(node.leftChild) + getLevelNodeNum(node.rightChild);
     }
 
     /**

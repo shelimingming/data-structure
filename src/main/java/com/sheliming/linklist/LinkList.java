@@ -5,9 +5,9 @@ public class LinkList {
     public Node head;//指向头结点
     public Node current;//指向最后一个节点
 
-    class Node {
-        int data;
-        Node next;
+    public class Node {
+        public int data;
+        public Node next;
 
         public Node(int data) {
             this.data = data;
@@ -97,14 +97,14 @@ public class LinkList {
      * @param head2
      * @return
      */
-    public Node mergeLinkList(Node head1, Node head2) {
-        if(head1 ==null&&head2==null) {
+    public static Node mergeLinkList(Node head1, Node head2) {
+        if (head1 == null && head2 == null) {
             return null;
         }
-        if(head1 == null) {
+        if (head1 == null) {
             return head2;
         }
-        if(head2 ==null) {
+        if (head2 == null) {
             return head1;
         }
 
@@ -112,18 +112,18 @@ public class LinkList {
         Node current;
 
         //一开始，我们让current结点指向head1和head2中较小的数据，得到head结点
-        if(head1.data < head2.data) {
+        if (head1.data < head2.data) {
             head = head1;
             current = head1;
             head1 = head1.next;
-        }else {
+        } else {
             head = head2;
             current = head2;
             head2 = head2.next;
         }
 
-        while(head1!=null&&head2!=null) {
-            if(head1.data<head2.data) {
+        while (head1 != null && head2 != null) {
+            if (head1.data < head2.data) {
                 current.next = head1;
                 current = head1;
                 head1 = head1.next;
@@ -135,15 +135,83 @@ public class LinkList {
         }
 
         //合并剩余的元素
-        if(head1 == null) {
+        if (head1 == null) {
             current.next = head2;
         }
 
-        if(head2 == null) {
+        if (head2 == null) {
             current.next = head1;
         }
 
         return head;
+    }
+
+    /**
+     * 返回当前链表的中间节点，（偶数节点返回中间靠后的一个节点）
+     *
+     * @return
+     */
+    public Node getMidNode() {
+        return getMidNode(head);
+    }
+
+    /**
+     * 返回以head节点为头的链表的中间节点，（偶数节点返回中间靠后的一个节点）
+     * 使用快慢指针实现
+     *
+     * @param head
+     * @return
+     */
+    public static Node getMidNode(Node head) {
+        //没有节点返回null
+        if (head == null) {
+            return null;
+        }
+        //只有一个节点返回这个节点
+        if (head.next == null) {
+            return head;
+        }
+
+
+        Node first = head;
+        Node second = head;
+
+        while (second != null && second.next != null) {
+            first = first.next;
+            second = second.next.next;
+        }
+
+        return first;
+    }
+
+    /**
+     * 返回以head节点为头的链表的中间节点，（偶数节点返回中间靠前的一个节点）
+     * 使用快慢指针实现
+     *
+     * @param head
+     * @return
+     */
+    public static Node getNodeBeforMidNode(Node head){
+        //没有节点返回null
+        if (head == null) {
+            return null;
+        }
+        //只有一个节点返回这个节点
+        if (head.next == null) {
+            return head;
+        }
+
+        Node before = null;
+        Node first = head;
+        Node second = head;
+
+        while (second != null && second.next != null) {
+            before = first;
+            first = first.next;
+            second = second.next.next;
+        }
+
+        return before;
     }
 
     public static void main(String[] args) {

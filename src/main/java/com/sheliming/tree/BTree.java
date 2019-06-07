@@ -1,6 +1,7 @@
 package com.sheliming.tree;
 
-import javax.swing.tree.TreeNode;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 二叉（搜索）树
@@ -14,8 +15,10 @@ import javax.swing.tree.TreeNode;
  * 该节点是叶节点，没有子节点
  * 该节点有一个子节点
  * 该节点有两个子节点:中序后继来代替该节点
+ *
+ * https://blog.csdn.net/jisuanjiguoba/article/details/80471018
  */
-public class BTree<T> {
+public class BTree<T extends Comparable<T>> {
     private BNode<T> root; //根节点
 
     public BTree() {
@@ -160,6 +163,76 @@ public class BTree<T> {
     }
 
     /**
+     * 返回当前树的节点的个数
+     * （1）如果二叉树为空，节点个数为0
+     * （2）如果二叉树不为空，二叉树节点个数 = 左子树节点个数 + 右子树节点个数 + 1
+     *
+     * @return
+     */
+    public int getNodeNum() {
+        return getNodeNum(root);
+    }
+
+    private int getNodeNum(BNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return getNodeNum(node.leftChild) + getNodeNum(node.rightChild) + 1;
+    }
+
+    /**
+     * 返回当前树的叶子节点的个数
+     * （1）如果二叉树为空，叶子节点个数为0
+     * （2）如果节点的左右两个儿子都为空，则该节点为叶子结点
+     * （3）二叉树叶子节点个数 = 左子树叶子节点个数 + 右子树叶子节点个数
+     *
+     * @return
+     */
+    public int getLevelNodeNum() {
+        return getLevelNodeNum(root);
+    }
+
+    private int getLevelNodeNum(BNode node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.leftChild == null && node.rightChild == null) {
+            return 1;
+        }
+        return getLevelNodeNum(node.leftChild) + getLevelNodeNum(node.rightChild);
+    }
+
+    /**
+     * 分层遍历二叉树（按层次从上往下，从左往右）
+     * 相当于广度优先搜索，使用队列实现。队列初始化，将根节点压入队列。
+     * 当队列不为空，进行如下操作：弹出一个节点，访问，若左子节点或右子节点不为空，将其压入队列。
+     *
+     * @return
+     */
+    public String levelTraverse() {
+        if (root == null) {
+            return null;
+        }
+
+        StringBuilder res = new StringBuilder();
+
+        Queue<BNode> queue = new LinkedList<BNode>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            BNode node = queue.poll();
+            res.append(node.data + ",");
+            if (node.leftChild != null) {
+                queue.offer(node.leftChild);
+            }
+            if (node.rightChild != null) {
+                queue.offer(node.rightChild);
+            }
+        }
+        return res.substring(0, res.length() - 1);
+    }
+
+    /**
      * 二叉树的节点类
      *
      * @param <T>
@@ -248,7 +321,7 @@ public class BTree<T> {
      */
     public static void main(String[] args) {
 
-        BTree tree = new BTree();
+        BTree<Integer> tree = new BTree<Integer>();
         tree.insert(36);
         tree.insert(26);
         tree.insert(72);

@@ -2,7 +2,6 @@ package com.sheliming.linklist;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sun.awt.image.ImageWatched;
 
 public class LinkListTest {
 
@@ -95,5 +94,45 @@ public class LinkListTest {
         }
         LinkList.Node midNode7 = list7.getMidNode();
         Assert.assertEquals(4, midNode7.data);
+    }
+
+    /**
+     * 测试链表翻转（用循环）
+     */
+    @Test
+    public void reverseTest() {
+        LinkList list = new LinkList();
+        for (int i = 1; i <= 10; i++) {
+            list.add(i);
+        }
+        LinkList.Node reverse = list.reverse(list.head);
+        Assert.assertEquals("10,9,8,7,6,5,4,3,2,1", list.print(reverse));
+    }
+
+    /**
+     * 测试链表翻转（用递归）
+     */
+    @Test
+    public void reverse2Test() {
+        LinkList list = new LinkList();
+        for (int i = 1; i <= 10; i++) {
+            list.add(i);
+        }
+        LinkList.Node reverse = list.reverse2(list.head);
+        Assert.assertEquals("10,9,8,7,6,5,4,3,2,1", list.print(reverse));
+    }
+
+    /**
+     * 测试链表是否有环
+     */
+    @Test
+    public void hasCycleTest() {
+        //测试无环
+        LinkList list = new LinkList();
+        for (int i = 1; i <= 10; i++) {
+            list.add(i);
+        }
+        boolean hasCycle = LinkList.hasCycle(list.head);
+        Assert.assertEquals(false, hasCycle);
     }
 }

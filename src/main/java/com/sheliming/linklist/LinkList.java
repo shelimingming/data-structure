@@ -191,7 +191,7 @@ public class LinkList {
      * @param head
      * @return
      */
-    public static Node getNodeBeforMidNode(Node head){
+    public static Node getNodeBeforMidNode(Node head) {
         //没有节点返回null
         if (head == null) {
             return null;
@@ -212,6 +212,47 @@ public class LinkList {
         }
 
         return before;
+    }
+
+    //翻转链表(用循环)
+    public static Node reverse(Node node) {
+        Node preNode = null;
+        while (node != null) {
+            Node temp = node.next;
+            node.next = preNode;
+            preNode = node;
+            node =temp;
+        }
+        return preNode;
+    }
+
+    //翻转链表(用递归)
+    public static Node reverse2(Node node) {
+        if(node == null || node.next == null) {
+            return node;
+        }
+        Node reverseNode = reverse2(node.next);
+        node.next.next = node;
+        node.next = null;
+        return reverseNode;
+    }
+
+    //判断链表是否有环
+    public static boolean hasCycle(Node node) {
+        if(node == null || node.next == null) {
+            return false;
+        }
+        Node fast = node.next;
+        Node slow = node;
+
+        while(fast != slow) {
+            if(fast==null||fast.next==null) {
+                return false;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return true;
     }
 
     public static void main(String[] args) {

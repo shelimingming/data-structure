@@ -3,10 +3,10 @@ package com.sheliming.tree;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BTreeTest {
+public class BinaryTreeTest {
 
 
-    public BTree<Integer> createBTree() {
+    public BinaryTree<Integer> createBTree() {
         /**
          * ***********36
          * *******26         72
@@ -14,7 +14,7 @@ public class BTreeTest {
          * ***********41    60
          * *************43
          */
-        BTree tree = new BTree();
+        BinaryTree tree = new BinaryTree();
         tree.insert(36);
         tree.insert(26);
         tree.insert(72);
@@ -28,22 +28,22 @@ public class BTreeTest {
 
     @Test
     public void getNodeNumTest() {
-        BTree<Integer> bTree = createBTree();
-        int nodeNum = bTree.getNodeNum();
+        BinaryTree<Integer> binaryTree = createBTree();
+        int nodeNum = binaryTree.getNodeNum();
         Assert.assertEquals(8, nodeNum);
     }
 
     @Test
     public void getLevelNodeNumTest() {
-        BTree<Integer> bTree = createBTree();
-        int nodeNum = bTree.getLevelNodeNum();
+        BinaryTree<Integer> binaryTree = createBTree();
+        int nodeNum = binaryTree.getLevelNodeNum();
         Assert.assertEquals(4, nodeNum);
     }
 
     @Test
     public void levelTraverseTest() {
-        BTree<Integer> bTree = createBTree();
-        String s = bTree.levelTraverse();
+        BinaryTree<Integer> binaryTree = createBTree();
+        String s = binaryTree.levelTraverse();
         Assert.assertEquals("36,26,72,55,80,41,60,43", s);
     }
 

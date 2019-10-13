@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 二叉（搜索）树
+ * 二叉搜索树---BST
  * 一个节点的左子节点的关键字值小于这个节点，
  * 右子节点的关键字值大于或等于这个节点
  * <p>
@@ -18,10 +18,10 @@ import java.util.Queue;
  *
  * https://blog.csdn.net/jisuanjiguoba/article/details/80471018
  */
-public class BTree<T extends Comparable<T>> {
+public class BinaryTree<T extends Comparable<T>> {
     private BNode<T> root; //根节点
 
-    public BTree() {
+    public BinaryTree() {
         this.root = null;
     }
 
@@ -237,11 +237,11 @@ public class BTree<T extends Comparable<T>> {
      *
      * @param <T>
      */
-    class BNode<T> {
+    class BNode<T extends Comparable<T>> {
         private T data;
-        private BNode parent;
-        private BNode leftChild;
-        private BNode rightChild;
+        private BNode<T> parent;
+        private BNode<T> leftChild;
+        private BNode<T> rightChild;
 
         public BNode() {
             this.data = null;
@@ -321,7 +321,7 @@ public class BTree<T extends Comparable<T>> {
      */
     public static void main(String[] args) {
 
-        BTree<Integer> tree = new BTree<Integer>();
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
         tree.insert(36);
         tree.insert(26);
         tree.insert(72);

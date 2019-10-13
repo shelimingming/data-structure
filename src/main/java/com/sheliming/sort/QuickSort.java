@@ -7,7 +7,15 @@ public class QuickSort {
         int[] a = {1, 2, 9, 4, 3, 1};
         quickSort(a);
         for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i] + " ");
+            System.out.print(a[i] + " ");
+        }
+
+        System.out.println();
+
+        int[] a1 = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
+        quickSort(a1);
+        for (int i = 0; i < a1.length; i++) {
+            System.out.print(a1[i] + " ");
         }
     }
 
@@ -26,28 +34,30 @@ public class QuickSort {
     }
 
     private static int partitionIt(int[] a, int left, int right, int privot) {
-        int leftPtr = left + 1;
+        int leftPtr = left;
         int rightPtr = right;
         while (true) {
-            while (a[leftPtr] < privot) {
-                leftPtr++;
-            }
-            while (a[rightPtr] > privot) {
+            //一定要先从右边开始，防止基准就是最小值
+            while (a[rightPtr] >= privot && leftPtr < rightPtr) {
                 rightPtr--;
+            }
+            //一定要<=
+            while (a[leftPtr] <= privot && leftPtr < rightPtr) {
+                leftPtr++;
             }
             if (leftPtr >= rightPtr) {
                 break;
             } else {
-                swap(a[rightPtr], a[leftPtr]);
+                swap(a, rightPtr, leftPtr);
             }
         }
-        swap(a[left], a[rightPtr]);
+        swap(a, left, rightPtr);
         return rightPtr;
     }
 
-    private static void swap(int i, int j) {
-        int temp = i;
-        i = j;
-        j = temp;
+    private static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 }

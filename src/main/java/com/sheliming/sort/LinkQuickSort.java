@@ -5,6 +5,10 @@ import java.util.List;
 /**
  * 链表的快速排序
  * https://www.cnblogs.com/morethink/p/8452914.html
+ * <p>
+ * 我们只需要两个指针p1和p2，这两个指针均往next方向移动，
+ * 移动的过程中保持p1之前的key都小于选定的key，p1和p2之间的key都大于选定的key，
+ * 那么当p2走到末尾时交换p1与key值便完成了一次切分。
  */
 public class LinkQuickSort {
     static class ListNode {
@@ -41,6 +45,7 @@ public class LinkQuickSort {
             p2 = p2.next;
         }
 
+        //最后交换head和p1的值
         if (p1 != head) {
             int temp = p1.value;
             p1.value = head.value;

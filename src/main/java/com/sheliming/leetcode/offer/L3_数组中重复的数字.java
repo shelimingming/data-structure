@@ -46,6 +46,7 @@ public class L3_数组中重复的数字 {
     }
 
     /**
+     * 判断当前位置的值和位置是不是相等，不想等将这个值移到相等的位置，再判断
      * @param nums
      * @return
      */
@@ -66,6 +67,15 @@ public class L3_数组中重复的数字 {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+    }
+
+    /**
+     * 采用类似二分法
+     * @param nums
+     * @return
+     */
+    public int findRepeatNumber3(int[] nums) {
+        return 0;
     }
 
     public static void main(String[] args) {

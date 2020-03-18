@@ -72,6 +72,20 @@ public class L6_从尾到头打印链表 {
         return reverseHead;
     }
 
+    /**
+     * 使用递归
+     * @param head
+     * @return
+     */
+    public void reversePrint3(ListNode head) {
+        if(head!=null) {
+            if(head.next!=null) {
+                reversePrint3(head.next);
+            }
+            System.out.println(head.val);
+        }
+    }
+
     public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
         ListNode l2 = new ListNode(2);
@@ -83,5 +97,7 @@ public class L6_从尾到头打印链表 {
         for (int i = 0; i < ints.length; i++) {
             System.out.println(ints[i]);
         }
+
+        new L6_从尾到头打印链表().reversePrint3(l1);
     }
 }

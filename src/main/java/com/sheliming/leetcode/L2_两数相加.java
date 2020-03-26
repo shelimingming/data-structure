@@ -18,7 +18,7 @@ package com.sheliming.leetcode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class L2_两数相加 {
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -53,17 +53,17 @@ public class L2_两数相加 {
             curr.next = temp;
             curr = curr.next;
 
-            if(l1!=null){
-                l1=l1.next;
+            if (l1 != null) {
+                l1 = l1.next;
             }
 
-            if(l2!=null) {
-                l2=l2.next;
+            if (l2 != null) {
+                l2 = l2.next;
             }
 
         }
 
-        if(up != 0) {
+        if (up != 0) {
             ListNode temp = new ListNode(up);
             curr.next = temp;
         }
@@ -71,6 +71,52 @@ public class L2_两数相加 {
         return res.next;
     }
 
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(0);
+
+        ListNode curr = res;
+        int sum = 0;
+        int addOne = 0;
+
+        while (l1 != null || l2 != null || addOne != 0) {
+            int a = l1 != null ? l1.val : 0;
+            int b = l2 != null ? l2.val : 0;
+            sum = a + b + addOne;
+            ListNode var = new ListNode(sum % 10);
+            curr.next = var;
+            curr = curr.next;
+            addOne = sum / 10;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+
+
+        return res.next;
+    }
+
     public static void main(String[] args) {
+        ListNode l1 = new ListNode(2);
+        ListNode l2 = new ListNode(4);
+        ListNode l3 = new ListNode(3);
+        l1.next = l2;
+        l2.next = l3;
+
+        ListNode l4 = new ListNode(5);
+        ListNode l5 = new ListNode(6);
+        ListNode l6 = new ListNode(4);
+        l4.next = l5;
+        l5.next = l6;
+
+        ListNode listNode = new L2_两数相加().addTwoNumbers2(l1, l4);
+        while(listNode!=null) {
+            System.out.println(listNode.val);
+            listNode = listNode.next;
+        }
+
+
     }
 }

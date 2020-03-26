@@ -1,0 +1,22 @@
+java.util.LinkedList
+1.成员变量
+transient int size = 0;  用transient关键字标记的成员变量不参与序列化过程
+transient Node<E> first;
+transient Node<E> last;
+
+2.成员方法
+   构造方法
+   LinkedList()
+   LinkedList(Collection<? extends E> c)
+
+   public boolean add(E e)
+   public void add(int index, E element)
+   public boolean addAll(Collection<? extends E> c)
+   public boolean addAll(int index, Collection<? extends E> c)
+   public void addFirst(E e)
+   public void addLast(E e)
+
+   public void clear()
+
+
+   public boolean contains(Object o)

@@ -1,7 +1,6 @@
 package com.sheliming.leetcode.offer;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 找出数组中重复的数字。
@@ -70,11 +69,20 @@ public class L3_数组中重复的数字 {
     }
 
     /**
-     * 采用类似二分法
+     * 排序
      * @param nums
      * @return
      */
     public int findRepeatNumber3(int[] nums) {
+        Arrays.sort(nums);
+        int pre = nums[0];
+        for(int i=1;i<nums.length;i++) {
+            if(nums[i]==pre) {
+                return pre;
+            }else {
+                pre = nums[i];
+            }
+        }
         return 0;
     }
 

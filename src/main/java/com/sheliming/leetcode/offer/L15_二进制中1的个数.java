@@ -23,7 +23,7 @@ package com.sheliming.leetcode.offer;
  * 链接：https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class L15二进制中1的个数 {
+public class L15_二进制中1的个数 {
     public int hammingWeight(int n) {
         String s = Integer.toBinaryString(n);
         int count = 0;
@@ -45,6 +45,6 @@ public class L15二进制中1的个数 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new L15二进制中1的个数().hammingWeight2(9));
+        System.out.println(new L15_二进制中1的个数().hammingWeight2(9));
     }
 }

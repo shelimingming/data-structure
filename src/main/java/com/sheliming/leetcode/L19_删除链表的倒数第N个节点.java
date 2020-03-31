@@ -21,5 +21,47 @@ package com.sheliming.leetcode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class L19_删除链表的倒数第N个节点 {
-    
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        for(int i=0;i<n;i++) {
+            fast = fast.next;
+        }
+
+        while(fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+
+        return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        ListNode l3 = new ListNode(3);
+        ListNode l4 = new ListNode(4);
+        ListNode l5 = new ListNode(5);
+
+        l1.next=l2;
+        l2.next =l3;
+        l3.next =l4;
+        l4.next=l5;
+        System.out.println(new L19_删除链表的倒数第N个节点().removeNthFromEnd(l1,2));
+    }
 }

@@ -1,6 +1,4 @@
-package com.sheliming;
-
-import java.util.BitSet;
+package com.sheliming.ali;
 
 public class Test {
     public int getNum(int[] nums) {

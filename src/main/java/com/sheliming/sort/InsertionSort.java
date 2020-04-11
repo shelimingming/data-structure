@@ -16,6 +16,8 @@ package com.sheliming.sort;
  * 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
  * 将新元素插入到该位置后；
  * 重复步骤2~5。
+ *
+ * 最佳情况：T(n) = O(n)   最坏情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
  */
 public class InsertionSort {
     public static void main(String[] args) {
